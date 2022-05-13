@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ajax Trainer</title>
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#btn_Create").click(function(){
+					$.ajax({
+							url: "/rest/user",
+							method: "PUT",
+							headers: {
+								"Content-type":"application/json"
+							},
+							data: JSON.stringify({
+								"Name":"Newton",
+								"Email":"newton@mail.ru",
+								"Age": 30
+							}),
+							dataType: "json",
+							success: function() {
+								alert("Ready");								
+							}
+						});
+				});
+				
+				$("#btn_Read").click(function(){
+					$.ajax({
+						url: "/rest/user?id=1",
+						method: "GET",
+						dataType: "json",
+						success: function(data) {
+							alert(data.Name);
+						}
+					});
+				});
+				
+				$("#btn_Update").click(function(){						
+						$.ajax({
+							url: "/rest/user",
+							method: "PATCH",
+							headers: {
+								"Content-type":"application/json"
+							},
+							data: JSON.stringify({
+								"ID":1,
+								"Name":"Newton",
+								"Email":"newton@mail.ru",
+								"Age": 30
+							}),
+							dataType: "json",
+							success: function() {
+								alert("Ready");								
+							}
+						});
+				});
+				
+				$("#btn_Delete").click(function(){
+						$.ajax({
+							url: "/rest/user?id=1",
+							method: "DELETE",							
+							success: function() {
+								alert("Ready");								
+							}
+						});
+				});	
+			});
+		</script>
+	</head>
+	<body>
+		<input id="btn_Create" type="button" value="Create"/>
+		<input id="btn_Read" type="button" value="Read"/>
+		<input id="btn_Update" type="button" value="Update"/>
+		<input id="btn_Delete" type="button" value="Delete"/>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="jquery-3.6.0.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				//alert("jQuery ready");
+				$("#test").change(function(){
+					alert("Value Changed ["+$(this).val()+"]");
+				});
+				
+								
+				$("#btnGo").click(function(){
+					alert("button clicked");
+					$.get("ajax.php",function(data){
+						
+						alert("get ["+data.length+"]");
+						for(i=0;i<data.length;i++)
+							alert(data[i].caption);
+					},"json");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<select id="test">
+			<option value="1">One</option>
+			<option value="2">Two</option>
+			<option value="3">Three</option>
+		</select>
+		<br/>
+		<input id="btnGo" type="button" value="Go"/>
+	</body>
+</html>
